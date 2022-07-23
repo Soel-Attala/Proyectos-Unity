@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -19,6 +17,10 @@ public class Player : MonoBehaviour
     private bool slide;
     private bool crouch;
     private bool doge;
+    public int Health = 100;
+    private int daño = 20;
+
+
 
 
 
@@ -33,6 +35,8 @@ public class Player : MonoBehaviour
     {
         PlayerMoveMentRE();
         ModoCombate();
+        RecibirDaño();
+        Death();
     }
 
     void PlayerMoveMentRE()
@@ -89,7 +93,7 @@ public class Player : MonoBehaviour
             patada1 = false;
         }
 
-        if(patada1 == true)
+        if (patada1 == true)
         {
             anim.SetBool("Patada1", true);
         }
@@ -107,7 +111,7 @@ public class Player : MonoBehaviour
             patada2 = false;
         }
 
-        if(patada2 == true)
+        if (patada2 == true)
         {
             anim.SetBool("Patada2", true);
         }
@@ -141,7 +145,7 @@ public class Player : MonoBehaviour
             puño2 = true;
         }
 
-        if(puño2 == true)
+        if (puño2 == true)
         {
             anim.SetBool("Puño2", true);
         }
@@ -151,8 +155,33 @@ public class Player : MonoBehaviour
         }
 
     }
-     
-    
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.transform.gameObject.name == "Enemy")
+        {
+            Debug.Log("Has sido golpeado");
+
+            if (Health <= 100)
+            {
+                RecibirDaño();
+            }
+        }
+    }
+
+    void RecibirDaño()
+    {
+        if (Health <= 100)
+        {
+            daño = Health - 20;
+        }
+    }
+
+    void Death()
+    {
+        if (Health <= 0) Destroy(gameObject);
+    }
+
 
 
 }
