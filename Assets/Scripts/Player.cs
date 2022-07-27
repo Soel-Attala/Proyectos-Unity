@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     private bool doge;
     public int Health = 100;
     private int daño = 20;
+    public Rigidbody rb;
+    private float vidaRestante;
 
 
 
@@ -49,7 +51,7 @@ public class Player : MonoBehaviour
 
         Vector3 inputPlayer = new Vector3(hor, 0, ver);
 
-        transform.Translate(inputPlayer * speed * Time.deltaTime);
+        rb.AddForce(inputPlayer * speed * Time.deltaTime);
 
         if (inputPlayer == Vector3.zero)
         {
@@ -173,7 +175,7 @@ public class Player : MonoBehaviour
     {
         if (Health <= 100)
         {
-            daño = Health - 20;
+            vidaRestante = Health - daño;
         }
     }
 

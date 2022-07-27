@@ -16,11 +16,13 @@ public class Enemy : MonoBehaviour
     public int healthEnemy = 100;
     public float dist;
     public float daño;
+    public float range = 100f;
+    public Transform enemyPosition;
 
 
     void Start()
     {
-
+        
     }
 
 
@@ -34,6 +36,7 @@ public class Enemy : MonoBehaviour
         Caminar();
         RecibirDaño();
         Death();
+        Vision();
 
     }
 
@@ -131,6 +134,15 @@ public class Enemy : MonoBehaviour
     void Death()
     {
         if (healthEnemy <= 0) Destroy(gameObject);
+    }
+
+    void Vision()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(enemyPosition.position, enemyPosition.transform.forward, out hit, range))
+        {
+            FollowPlayer();
+        }
     }
 
 
