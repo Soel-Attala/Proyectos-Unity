@@ -29,8 +29,6 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         LookAtPlayerQuat();
-        FollowPlayer();
-        Movement();
         Animation();
         Combat();
         Caminar();
@@ -142,6 +140,7 @@ public class Enemy : MonoBehaviour
         if (Physics.Raycast(enemyPosition.position, enemyPosition.transform.forward, out hit, range))
         {
             FollowPlayer();
+            Movement();
         }
     }
 
