@@ -31,8 +31,8 @@ public class Enemy : MonoBehaviour
         LookAtPlayerQuat();
         Animation();
         Combat();
-        Caminar();
-        RecibirDaño();
+        Walk();
+        TakeDmg();
         Death();
         Vision();
 
@@ -61,6 +61,15 @@ public class Enemy : MonoBehaviour
             enemySpeed = 3f;
             
         }
+
+        if(dist > 25)
+        {
+            enemySpeed = 3f;
+        }
+        else
+        {
+            enemySpeed = 0;
+        }
     }
     void Animation()
     {
@@ -74,24 +83,17 @@ public class Enemy : MonoBehaviour
             ataque = false;
         }
     }
-    void Caminar()
+    void Walk()
     {
         float dist = Vector3.Distance(transform.position, playerPosition.position);
         if (dist >= 4)
         {
             caminar = true;
-        }
-        else
-        {
-            caminar = false;    
-        }
-
-        if (caminar == true)
-        {
             anim.SetBool("Walking", true);
         }
         else
         {
+            caminar = false;
             anim.SetBool("Walking", false);
         }
     }
@@ -116,12 +118,12 @@ public class Enemy : MonoBehaviour
 
             if (healthEnemy <= 100)
             {
-                RecibirDaño();
+                TakeDmg();
             }
         }
     }
 
-    void RecibirDaño()
+    void TakeDmg()
     {
         if (healthEnemy <= 100)
         {
