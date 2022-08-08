@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     private bool slide;
     private bool crouch;
     private bool doge;
-    public int Health = 100;
+    public static float Health = 100f;
     private int daño = 20;
     public Rigidbody rb;
     private float vidaRestante;
@@ -36,8 +36,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         PlayerMoveMentRE();
-        ModoCombate();
-        RecibirDaño();
+        CombatMode();
         Death();
     }
 
@@ -64,7 +63,7 @@ public class Player : MonoBehaviour
 
     }
 
-    void ModoCombate()
+    void CombatMode()
     {
         if (Input.GetKeyDown(KeyCode.X))
         {
@@ -158,27 +157,7 @@ public class Player : MonoBehaviour
 
     }
 
-    void OnTriggerEnter(Collider col)
-    {
-        if (col.transform.gameObject.name == "Enemy")
-        {
-            Debug.Log("Has sido golpeado");
-
-            if (Health <= 100)
-            {
-                RecibirDaño();
-            }
-        }
-    }
-
-    void RecibirDaño()
-    {
-        if (Health <= 100)
-        {
-            vidaRestante = Health - daño;
-        }
-    }
-
+  
     void Death()
     {
         if (Health <= 0) Destroy(gameObject);
