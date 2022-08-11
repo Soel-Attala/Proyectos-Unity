@@ -6,16 +6,17 @@ public class Enemy : MonoBehaviour
 {
    
     public Transform playerPosition;
-    private bool ataque;
-    private bool ataque2;
-    private float enemySpeed = 3f;
+    private bool atack;
+    private bool atack2;
+    public float enemySpeed = 3f;
    
     public Animator anim;
-    private bool caminar;
-    private bool morir;
+    private bool walk;
+    private bool death;
     public int healthEnemy = 100;
+    public string name;
     public float dist;
-    public float daño;
+    public float damage;
     public float range = 100f;
     public Transform enemyPosition;
 
@@ -23,6 +24,12 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         
+    }
+
+    //desafío de herencia
+    public void BasicAttack()
+    {
+        Debug.Log("El enemigo ha atacado");
     }
 
 
@@ -76,11 +83,11 @@ public class Enemy : MonoBehaviour
         float dist = Vector3.Distance(transform.position, playerPosition.position);
         if (dist <= 4)
         {
-            ataque = true;
+            atack = true;
         }
         else
         {
-            ataque = false;
+            atack = false;
         }
     }
     void Walk()
@@ -88,19 +95,19 @@ public class Enemy : MonoBehaviour
         float dist = Vector3.Distance(transform.position, playerPosition.position);
         if (dist >= 4)
         {
-            caminar = true;
+            walk = true;
             anim.SetBool("Walking", true);
         }
         else
         {
-            caminar = false;
+            walk = false;
             anim.SetBool("Walking", false);
         }
     }
 
     void Combat()
     {
-        if(ataque == true)
+        if(atack == true)
         {
             anim.SetBool("ataque", true);
         }
@@ -127,7 +134,7 @@ public class Enemy : MonoBehaviour
     {
         if (healthEnemy <= 100)
         {
-            daño = healthEnemy - 35;
+            damage = healthEnemy - 35;
         }
     }
 
