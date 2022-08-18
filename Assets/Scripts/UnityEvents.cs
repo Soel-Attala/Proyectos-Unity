@@ -9,9 +9,9 @@ public class UnityEvents : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.CompareTag("Sphere"))
+        if (col.CompareTag("Player"))
         {
-
+            myTrigger.Invoke();
         }
     }
 }
