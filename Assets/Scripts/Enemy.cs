@@ -9,12 +9,10 @@ public class Enemy : MonoBehaviour
     private bool atack;
     private bool atack2;
     public float enemySpeed = 3f;
-   
     public Animator anim;
     private bool walk;
     private bool death;
     public int healthEnemy = 100;
-    public string name;
     public float dist;
     public float damage;
     public float range = 100f;
@@ -26,7 +24,7 @@ public class Enemy : MonoBehaviour
         
     }
 
-    //desafío de herencia
+    //desafï¿½o de herencia
     public void BasicAttack()
     {
         Debug.Log("El enemigo ha atacado");
